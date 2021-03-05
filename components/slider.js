@@ -1,5 +1,6 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, TouchableWithoutFeedback } from "react-native";
+import { Pressable } from "react-native";
 import { Image } from "react-native";
 import { StyleSheet, View, Text } from "react-native";
 import { SliderData } from "../config/listData";
@@ -23,17 +24,23 @@ export default function Slider() {
       }}
       decelerationRate={"fast"}
       renderItem={({ item }) => (
-        <View
-          elevation={11}
-          style={[styles.itemContainer, { backgroundColor: item.color }]}
+        <Pressable
+          onPress={() => {
+            console.log("clicked:", item.title);
+          }}
         >
-          <Text style={styles.itemText}>{item.title}</Text>
-          <Image
-            source={{ uri: item.uri }}
-            size={IconSize}
-            style={styles.image}
-          />
-        </View>
+          <View
+            elevation={11}
+            style={[styles.itemContainer, { backgroundColor: item.color }]}
+          >
+            <Text style={styles.itemText}>{item.title}</Text>
+            <Image
+              source={{ uri: item.uri }}
+              size={IconSize}
+              style={styles.image}
+            />
+          </View>
+        </Pressable>
       )}
       showHorizontalScrollIndicator={false}
     ></FlatList>

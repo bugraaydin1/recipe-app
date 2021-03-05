@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
     zIndex: -1,
     alignItems: "center",
     justifyContent: "center",
-    height: 200,
+    height: 180,
     width: "100%",
-    marginBottom: -90,
+    marginBottom: -80,
   },
 
   searchBoxContainer: {
@@ -104,9 +104,9 @@ const styles = StyleSheet.create({
   placeholderText: {
     flex: 0.8,
     color: TextPrimaryColor,
-    textShadowRadius: 1,
+    /*  textShadowRadius: 1,
     textShadowColor: "#ddd",
-    textShadowOffset: { width: 1, height: 1 },
+    textShadowOffset: { width: 1, height: 1 }, */
     paddingHorizontal: Spacing * 2,
   },
 

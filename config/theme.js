@@ -6,9 +6,9 @@ export const width = 180;
 
 //typography
 export const FontSizeTitle = 24;
-export const FontSizeSubTitle = 18;
-export const FontSizeBody = 16;
-export const FontSizeBody2 = 14;
+export const FontSizeSubTitle = 16;
+export const FontSizeBody = 14;
+export const FontSizeBody2 = 12;
 
 //colors
 export const TextPrimaryColor = "#555";

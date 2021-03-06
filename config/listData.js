@@ -50,7 +50,7 @@ export const MenuCardData = [
   },
   {
     title: "Ara Sıcaklar",
-    subTitle: "En çıtır aras sıcaklar",
+    subTitle: "En çıtır ara sıcaklar",
     rating: 4.3,
     color: "tomato",
     uri:

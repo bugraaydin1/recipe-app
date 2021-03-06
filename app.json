@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "food-app",
-    "slug": "food-app",
+    "name": "recipe-app",
+    "slug": "recipe-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Delicious bunch of recipes",
+    "githubUrl": "https://github.com/bugraaydin1/recipe-app"
   }
 }

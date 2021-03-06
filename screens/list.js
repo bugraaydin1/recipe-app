@@ -46,7 +46,7 @@ export default function List() {
       {/* DISH MENUS VERTICAL LIST */}
       <CardList />
 
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         {IconsData.map((item) => (
           <TouchableOpacity
             key={item.id}
@@ -58,7 +58,7 @@ export default function List() {
             <Icon url={item.url} />
           </TouchableOpacity>
         ))}
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 }

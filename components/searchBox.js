@@ -1,5 +1,11 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  TextInput,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import {
   BorderRadius,
@@ -11,17 +17,17 @@ import {
 } from "../config/theme";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function SearchBox() {
+export default function SearchBox({ text, onChangeText }) {
   return (
     <View style={styles.container}>
       <View
         style={{
-          marginBottom: -30,
           top: 30,
+          marginBottom: -30,
           flexDirection: "row",
         }}
       >
-        <Text style={styles.title}>ARA</Text>
+        <Text style={styles.title}>Tarif Ara</Text>
         <TouchableOpacity>
           <Text style={styles.filterText}>Filtrele</Text>
         </TouchableOpacity>
@@ -35,7 +41,20 @@ export default function SearchBox() {
       >
         <View elevation={11} style={styles.searchBoxContainer}>
           <View style={styles.subContainer}>
-            <Text style={styles.placeholderText}>Nefis bir tarif ara...</Text>
+            <TextInput
+              autoCapitalize="words"
+              autoCorrect={false}
+              maxLength={30}
+              value={text}
+              style={styles.searchTextInput}
+              placeholder="Nefis bir tarif ara..."
+              returnKeyLabel={"ARA"}
+              returnKeyType="search"
+              placeholderTextColor={TextPrimaryColor}
+              onChangeText={(text) => onChangeText(text)}
+              enablesReturnKeyAutomatically
+              //showSoftInputOnFocus={false} //for hiding keyboard
+            />
             <Ionicons
               style={styles.searchIcon}
               name="search"
@@ -101,7 +120,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
   },
 
-  placeholderText: {
+  searchTextInput: {
     flex: 0.8,
     color: TextPrimaryColor,
     /*  textShadowRadius: 1,

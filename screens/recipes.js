@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import SearchBox from "./../components/searchBox";
-import Details from "./../screens/details";
-import List from "./../screens/list";
+import List from "../components/list";
+//import Details from "./../screens/details";
 
 export default function Recipes() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  console.log(searchQuery);
+
   return (
     <View style={styles.container}>
-      <SearchBox />
+      <SearchBox text={searchQuery} onChangeText={setSearchQuery} />
       <List />
     </View>
   );

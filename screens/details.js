@@ -1,10 +1,14 @@
+import { useNavigation } from "@react-navigation/core";
 import React, { useRef } from "react";
-import { TouchableOpacity } from "react-native";
-import { ScrollView } from "react-native";
-import { FlatList } from "react-native";
-import { Text } from "react-native";
-import { View } from "react-native";
-import { SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  FlatList,
+  ScrollView,
+  TouchableOpacity,
+  View,
+  Text,
+} from "react-native";
 import { IconsData, SliderData } from "../config/listData";
 import { BorderRadius, FontSizeBody, Spacing, width } from "../config/theme";
 import { BackIcon } from "./../components/backIcon";
@@ -14,6 +18,8 @@ export default function Details() {
   const ref = useRef();
   const item = IconsData[0];
   const selectedItemIndex = IconsData.findIndex((i) => i.id === item.id);
+
+  let navigation = useNavigation();
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -31,7 +37,9 @@ export default function Details() {
           </TouchableOpacity>
         ))}
       </View>
+
       <FlatList
+        style={{ flex: 1 }}
         ref={ref}
         horizontal
         pagingEnabled
@@ -62,6 +70,31 @@ export default function Details() {
         })}
         showsHorizontalScrollIndicator={false}
       ></FlatList>
+
+      <View style={styles.container}>
+        {IconsData.map((item) => (
+          <TouchableOpacity
+            key={item.id}
+            style={{ padding: Spacing, borderRadius: BorderRadius }}
+            onPress={() => {
+              console.log("clicked:", item.title);
+            }}
+          >
+            <Icon url={item.url} />
+          </TouchableOpacity>
+        ))}
+      </View>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 0.5,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 10,
+  },
+});

@@ -13,3 +13,5 @@ web-build/
 .DS_Store
 run/.expo/settings.json
 run/.expo/README.md
+App.js
+.expo-shared/README.md

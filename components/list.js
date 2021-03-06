@@ -6,7 +6,7 @@ import {
   Linking,
   Pressable,
 } from "react-native";
-import Slider from "./../components/slider";
+import Slider from "./slider";
 import {
   BorderRadius,
   FontSizeBody,
@@ -14,11 +14,11 @@ import {
   TextLinkColor,
   TextPrimaryColor,
   Spacing,
-} from "./../config/theme";
-import { Icon } from "./../components/icon";
+} from "../config/theme";
+import { Icon } from "./icon";
 import { View, Text } from "react-native";
 import { IconsData, SliderData } from "../config/listData";
-import CardList from "../components/cardList";
+import CardList from "./cardList";
 
 export default function List() {
   return (
@@ -45,33 +45,19 @@ export default function List() {
       <Slider />
       {/* DISH MENUS VERTICAL LIST */}
       <CardList />
-
-      {/* <View style={styles.container}>
-        {IconsData.map((item) => (
-          <TouchableOpacity
-            key={item.id}
-            style={{ padding: Spacing, borderRadius: BorderRadius }}
-            onPress={() => {
-              console.log("clicked:", item.title);
-            }}
-          >
-            <Icon url={item.url} />
-          </TouchableOpacity>
-        ))}
-      </View> */}
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  /*   container: {
     flex: 3,
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
     marginVertical: 10,
-  },
+  }, */
 
   title: {
     flex: 1,

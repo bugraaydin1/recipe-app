@@ -1,7 +1,7 @@
 export const IconSize = 60;
 export const Spacing = 10;
 export const BorderRadius = 16;
-export const ItemWidth = 120;
+export const ItemWidth = 180; //120
 export const width = 180;
 
 //typography

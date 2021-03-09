@@ -15,24 +15,13 @@ import {
   TextPrimaryColor,
   Spacing,
 } from "../config/theme";
+import ScreenTitle from "./head/screenTitle";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function SearchBox({ text, onChangeText }) {
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          top: 30,
-          marginBottom: -30,
-          flexDirection: "row",
-        }}
-      >
-        <Text style={styles.title}>Tarif Ara</Text>
-        <TouchableOpacity>
-          <Text style={styles.filterText}>Filtrele</Text>
-        </TouchableOpacity>
-      </View>
-
+      <ScreenTitle />
       <LinearGradient
         start={[1, 0.1]}
         end={[1, 1]}
@@ -73,27 +62,6 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-  },
-
-  title: {
-    flex: 1,
-    paddingHorizontal: Spacing * 3,
-    fontSize: FontSizeTitle,
-    textAlign: "left",
-    textAlignVertical: "bottom",
-    fontWeight: "bold",
-    color: "#fff",
-    height: 30,
-  },
-  filterText: {
-    flex: 1,
-    paddingHorizontal: Spacing * 3,
-    fontSize: FontSizeBody,
-    textAlign: "right",
-    textAlignVertical: "bottom",
-    fontWeight: "bold",
-    color: "#fff",
-    height: 30,
   },
 
   linearGradient: {

@@ -12,7 +12,7 @@ import {
   IconSize,
 } from "../config/theme";
 
-export default function Slider() {
+export default function Slider({ handleCategoryPress }) {
   return (
     <FlatList
       horizontal
@@ -26,6 +26,7 @@ export default function Slider() {
       renderItem={({ item }) => (
         <Pressable
           onPress={() => {
+            handleCategoryPress({ title: item.title, color: item.color });
             console.log("clicked:", item.title);
           }}
         >
@@ -49,8 +50,9 @@ export default function Slider() {
 
 const styles = StyleSheet.create({
   itemContainer: {
-    width: ItemWidth * 1.5,
-    height: ItemWidth * 0.8,
+    flexDirection: "row",
+    width: ItemWidth,
+    height: ItemWidth * 0.4,
     borderRadius: BorderRadius,
     padding: Spacing,
     marginHorizontal: Spacing / 2,
@@ -62,16 +64,19 @@ const styles = StyleSheet.create({
     shadowOpacity: 1.0, //ios */
   },
   itemText: {
+    flex: 1,
+    paddingHorizontal: Spacing,
     color: "#fff",
     textShadowColor: "#444",
     textTransform: "uppercase",
   },
   image: {
+    flex: 1,
     width: IconSize * 1.2,
     height: IconSize * 1.2,
     resizeMode: "cover",
     borderTopLeftRadius: 21,
-    marginRight: -120,
-    marginBottom: -55,
+    marginRight: -15,
+    marginBottom: -45,
   },
 });

@@ -20,9 +20,10 @@ import { View, Text } from "react-native";
 import { IconsData, SliderData } from "../config/listData";
 import CardList from "./cardList";
 
-export default function List() {
+export default function List({ navigation, handleCategoryPress }) {
+  console.log(navigation);
   return (
-    <SafeAreaView style={{ paddingTop: Spacing * 5, flex: 1, width: "100%" }}>
+    <SafeAreaView style={{ top: Spacing * 5, flex: 1, width: "100%" }}>
       <View
         style={{
           flex: 0.1,
@@ -35,14 +36,16 @@ export default function List() {
         <Text style={styles.title}>Kategoriler</Text>
         <Text
           style={styles.viewAllText}
-          onPress={() => console.log("All categories clicked")}
+          onPress={() => {
+            console.log("All categories clicked");
+          }}
         >
           Tümü &gt;
         </Text>
       </View>
 
       {/* CATEGORY SLIDER */}
-      <Slider />
+      <Slider handleCategoryPress={handleCategoryPress} />
       {/* DISH MENUS VERTICAL LIST */}
       <CardList />
     </SafeAreaView>
@@ -50,15 +53,6 @@ export default function List() {
 }
 
 const styles = StyleSheet.create({
-  /*   container: {
-    flex: 3,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "center",
-    marginVertical: 10,
-  }, */
-
   title: {
     flex: 1,
     height: 20,

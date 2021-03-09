@@ -1,5 +1,4 @@
 import React from "react";
-import {} from "react-native";
 import {
   StyleSheet,
   Pressable,
@@ -21,14 +20,14 @@ import {
 } from "../config/theme";
 import { Rating } from "react-native-ratings";
 
-export default function CardList() {
+export default function CardList({ title }) {
   const ratingCompleted = (rating = 5) => {
     console.log("Rating is: " + rating);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sizin İçin Seçtiklerimiz</Text>
+      <Text style={styles.title}>En nefis {title?.toLocaleLowerCase()}</Text>
 
       {/* DISH CARDS */}
       <FlatList
@@ -64,18 +63,19 @@ export default function CardList() {
                 <View
                   style={{
                     flex: 1,
-                    paddingVertical: Spacing * 4,
+                    paddingVertical: Spacing * 3.5,
                     marginRight: -38,
                   }}
                 >
                   <Rating
                     type="star"
-                    defaultRating={item.rating}
+                    fractions={1}
                     ratingCount={5}
                     imageSize={21}
+                    minValue={1}
+                    startingValue={3}
+                    defaultRating={item.rating}
                     onFinishRating={ratingCompleted}
-                    starContainerStyle={{ borderRadius: 3 }}
-                    fractions={1}
                   />
                 </View>
               </View>
@@ -90,7 +90,7 @@ export default function CardList() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 11,
+    flex: 17,
     alignItems: "center",
     justifyContent: "center",
     textAlign: "left",
@@ -109,8 +109,9 @@ const styles = StyleSheet.create({
   itemContainer: {
     width: "95%",
     margin: Spacing,
+    marginBottom: Spacing * 2,
     marginTop: 0,
-    height: ItemWidth * 1.5,
+    height: ItemWidth,
     borderRadius: BorderRadius,
     alignItems: "flex-start",
     justifyContent: "flex-start",
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: ItemWidth,
+    height: ItemWidth * 0.7,
     resizeMode: "cover",
   },
 });

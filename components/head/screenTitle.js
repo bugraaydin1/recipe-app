@@ -14,7 +14,7 @@ export default function ScreenTitle({ title, color = "#fff" }) {
             }
           : {
               top: 30,
-              marginBottom: 0,
+              marginBottom: -15,
               flexDirection: "row",
             }
       }

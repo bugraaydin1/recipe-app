@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Pressable,
@@ -19,15 +19,20 @@ import {
   IconSize,
 } from "../config/theme";
 import { Rating } from "react-native-ratings";
+import FavoriteBadge from "./common/favoriteBadge";
 
-export default function CardList({ title }) {
+export default function CardList({ title, handleMenuPress }) {
   const ratingCompleted = (rating = 5) => {
     console.log("Rating is: " + rating);
   };
 
+  const [favorite, setFavorite] = useState({});
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>En nefis {title?.toLocaleLowerCase()}</Text>
+      <Text style={styles.title}>
+        En nefis {title?.toLocaleLowerCase() || "tarifler"}
+      </Text>
 
       {/* DISH CARDS */}
       <FlatList
@@ -40,9 +45,10 @@ export default function CardList({ title }) {
           padding: Spacing,
         }}
         decelerationRate={"normal"}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <Pressable
             onPress={() => {
+              handleMenuPress({ id: item.id, title: item.title });
               console.log("clicked Menu Card:", item.title);
             }}
           >
@@ -54,6 +60,12 @@ export default function CardList({ title }) {
                 source={{ uri: item.uri }}
                 size={ItemWidth}
                 style={styles.image}
+              />
+              <FavoriteBadge
+                size="medium"
+                index={index}
+                handleFavorite={setFavorite}
+                favorite={favorite}
               />
               <View style={{ flexDirection: "row" }}>
                 <View style={{ flex: 1 }}>

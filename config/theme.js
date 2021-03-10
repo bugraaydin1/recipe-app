@@ -1,4 +1,5 @@
 export const IconSize = 60;
+export const TinyIconSize = 24;
 export const Spacing = 10;
 export const BorderRadius = 16;
 export const ItemWidth = 180; //120
@@ -14,3 +15,4 @@ export const FontSizeBody2 = 12;
 export const TextPrimaryColor = "#555";
 export const TextSecondaryColor = "#aaa";
 export const TextLinkColor = "dodgerblue";
+export const LightestGray = "rgba(0,0,0,0.05)";

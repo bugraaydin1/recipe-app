@@ -20,7 +20,11 @@ import { View, Text } from "react-native";
 import { IconsData, SliderData } from "../config/listData";
 import CardList from "./cardList";
 
-export default function List({ navigation, handleCategoryPress }) {
+export default function List({
+  navigation,
+  handleMenuPress,
+  handleCategoryPress,
+}) {
   console.log(navigation);
   return (
     <SafeAreaView style={{ top: Spacing * 5, flex: 1, width: "100%" }}>
@@ -47,7 +51,7 @@ export default function List({ navigation, handleCategoryPress }) {
       {/* CATEGORY SLIDER */}
       <Slider handleCategoryPress={handleCategoryPress} />
       {/* DISH MENUS VERTICAL LIST */}
-      <CardList />
+      <CardList handleMenuPress={handleMenuPress} />
     </SafeAreaView>
   );
 }

@@ -1,15 +1,12 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import List from "../components/list";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import ScreenTitle from "../components/head/screenTitle";
-import CategoryMenuList from "./../components/categoryMenu/categoryMenuList";
-//import Details from "./../screens/details";
+import CategoryList from "../components/category/categoryList";
 
 export default function CategoryMenus({
   navigation,
   route /*  handleMenuPress */,
 }) {
-  console.log(route);
   const { title, color } = route.params.category;
 
   const handleMenuPress = (title) => {
@@ -20,7 +17,7 @@ export default function CategoryMenus({
   return (
     <View style={styles.container}>
       <ScreenTitle title={title} color={color} />
-      <CategoryMenuList handleMenuPress={handleMenuPress} title={title} />
+      <CategoryList handleMenuPress={handleMenuPress} title={title} />
     </View>
   );
 }
@@ -28,8 +25,6 @@ export default function CategoryMenus({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //flexDirection: "column",
-    //flexWrap: "wrap",
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",

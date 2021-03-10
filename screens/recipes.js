@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SearchBox from "./../components/searchBox";
 import List from "../components/list";
 import CategoryMenus from "./categoryMenus";
-import MenuDetails from "../components/categoryMenu/menuDetails";
+import MenuDetails from "./menuDetails";
 
 //import Details from "./../screens/details";
 
@@ -63,6 +63,10 @@ export default function Recipes({ navigation }) {
         handleCategoryPress={(category) => {
           console.log(category, "recipes !");
           navigation.push("Kategoriler", { category });
+        }}
+        handleMenuPress={(menu) => {
+          console.log(menu, "menu !");
+          navigation.push("Menü", menu);
         }}
       />
     </View>

@@ -1,5 +1,6 @@
 export const SliderData = [
   {
+    id: 0,
     title: "Çorbalar",
     color: "crimson",
     uri:
@@ -7,30 +8,35 @@ export const SliderData = [
     //"https://i2.wp.com/gimmedelicious.com/wp-content/uploads/2019/11/Creamy-Taco-Soup-Keto-9.jpg",
   },
   {
+    id: 1,
     title: "Ara Sıcaklar",
     color: "tomato",
     uri:
       "https://simply-delicious-food.com/wp-content/uploads/2019/11/Homemade-chicken-nuggets-2.jpg",
   },
   {
+    id: 2,
     title: "Deniz Ürünleri",
     color: "dodgerblue",
     uri:
       "https://simply-delicious-food.com/wp-content/uploads/2021/02/Pan-seared-salmon-with-dill-yogurt-sauce-4.jpg",
   },
   {
+    id: 3,
     title: "Salatalar",
     color: "lightgreen",
     uri:
       "https://simply-delicious-food.com/wp-content/uploads/2020/12/Chipotle-cauliflower-burrito-bowls-2.jpg",
   },
   {
+    id: 4,
     title: "Ana Yemekler",
     color: "darksalmon",
     uri:
       "https://simply-delicious-food.com/wp-content/uploads/2020/01/Cheesy-chicken-lasagna-4.jpg",
   },
   {
+    id: 5,
     title: "Tatlılar",
     color: "pink",
     uri:
@@ -40,6 +46,7 @@ export const SliderData = [
 
 export const MenuCardData = [
   {
+    id: 10,
     title: "Çorbalar",
     subTitle: "Birbirinden leziz çorbalar",
     rating: 3.8,
@@ -49,6 +56,7 @@ export const MenuCardData = [
     //"https://i2.wp.com/gimmedelicious.com/wp-content/uploads/2019/11/Creamy-Taco-Soup-Keto-9.jpg",
   },
   {
+    id: 11,
     title: "Ara Sıcaklar",
     subTitle: "En çıtır ara sıcaklar",
     rating: 4.3,
@@ -57,6 +65,7 @@ export const MenuCardData = [
       "https://simply-delicious-food.com/wp-content/uploads/2019/11/Homemade-chicken-nuggets-2.jpg",
   },
   {
+    id: 12,
     title: "Deniz Ürünleri",
     subTitle: "En taze deniz mahsülleri",
     rating: 4.7,
@@ -65,6 +74,7 @@ export const MenuCardData = [
       "https://simply-delicious-food.com/wp-content/uploads/2021/02/Pan-seared-salmon-with-dill-yogurt-sauce-4.jpg",
   },
   {
+    id: 13,
     title: "Salatalar",
     subTitle: "En hafif salatalar",
     rating: 4.5,
@@ -73,6 +83,7 @@ export const MenuCardData = [
       "https://simply-delicious-food.com/wp-content/uploads/2020/12/Chipotle-cauliflower-burrito-bowls-2.jpg",
   },
   {
+    id: 14,
     title: "Ana Yemekler",
     subTitle: "Doyurucu ana yemek tarifleri",
     rating: 3.5,
@@ -81,6 +92,7 @@ export const MenuCardData = [
       "https://simply-delicious-food.com/wp-content/uploads/2020/01/Cheesy-chicken-lasagna-4.jpg",
   },
   {
+    id: 15,
     title: "Tatlılar",
     subTitle: "Birbirinden güzel tatlılar",
     rating: 4.5,

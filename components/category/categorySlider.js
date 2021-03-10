@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -13,20 +13,27 @@ import {
   Spacing,
   BorderRadius,
   IconSize,
+  TinyIconSize,
 } from "../../config/theme";
+import { Ionicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons/";
+import FavoriteBadge from "./../common/favoriteBadge";
 
-export default function CategoryMenuSlider({ handleMenuPress, sliderData }) {
+export default function CategorySlider({ handleMenuPress, sliderData }) {
+  const [favorite, setFavorite] = useState(false);
+
+  console.log(favorite);
   return (
     <FlatList
       horizontal
       data={sliderData}
       keyExtractor={(item, index) => index}
-      snapToInterval={ItemWidth + Spacing * 2}
+      snapToInterval={ItemWidth * 1.5 + Spacing * 2}
       contentContainerStyle={{
         paddingHorizontal: Spacing,
       }}
       decelerationRate={"fast"}
-      renderItem={({ item }) => (
+      renderItem={({ item, index }) => (
         <Pressable
           onPress={() => {
             handleMenuPress({ title: item.title });
@@ -42,11 +49,30 @@ export default function CategoryMenuSlider({ handleMenuPress, sliderData }) {
               size={IconSize}
               style={styles.image}
             />
-            <View style={{ flex: 4, alignSelf: "flex-start" }}>
+            <View
+              style={{
+                flex: 4,
+                alignSelf: "flex-start",
+                paddingHorizontal: Spacing,
+              }}
+            >
               <Text style={styles.itemText}>{item.title}</Text>
-              <Text style={styles.itemText}>{item.color}</Text>
-              <Text style={styles.itemText}>Pişirme süresi: 30dk</Text>
+
+              <View style={styles.featureContainer}>
+                <Ionicons name="people" size={24} color="#fff" />
+                <Text style={styles.itemText}>{"3-4"} kişilik</Text>
+              </View>
+              <View style={styles.featureContainer}>
+                <MaterialIcons name="local-dining" size={24} color="#fff" />
+                <Text style={styles.itemText}>Pişirme: 30dk</Text>
+              </View>
             </View>
+
+            <FavoriteBadge
+              index={index}
+              handleFavorite={setFavorite}
+              favorite={favorite}
+            />
           </View>
         </Pressable>
       )}
@@ -62,7 +88,7 @@ const styles = StyleSheet.create({
     height: ItemWidth * 0.6,
     borderRadius: BorderRadius,
     padding: Spacing,
-    marginHorizontal: Spacing / 2,
+    marginHorizontal: Spacing,
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
@@ -73,6 +99,7 @@ const styles = StyleSheet.create({
   itemText: {
     /*  flex: 4, */
     paddingHorizontal: Spacing,
+    paddingVertical: Spacing / 2,
     color: "#fff",
     textTransform: "capitalize",
   },
@@ -83,5 +110,9 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     marginLeft: -11,
     /* marginBottom: -45, */
+  },
+  featureContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
   },
 });

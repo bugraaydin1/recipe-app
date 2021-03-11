@@ -17,7 +17,7 @@ import {
   Spacing,
   FontSizeSubTitle,
 } from "../../config/theme";
-import { SliderData } from "../../config/listData";
+import { MenuCardData } from "../../config/listData";
 import CardList from "../cardList";
 import CategorySlider from "./categorySlider";
 
@@ -39,11 +39,11 @@ export default function CategoryList({ title, navigation, handleMenuPress }) {
 
       {/* CATEGORY HORIZONTAL SLIDER */}
       <CategorySlider
-        sliderData={SliderData}
+        sliderData={MenuCardData}
         handleMenuPress={handleMenuPress}
       />
       {/* CATEGORY MENUS VERTICAL LIST */}
-      <CardList title={title} />
+      <CardList title={title} handleMenuPress={handleMenuPress} />
     </SafeAreaView>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FontSizeBody, FontSizeTitle, Spacing } from "../../config/theme";
 
-export default function ScreenTitle({ title, color = "#fff" }) {
+export default function ScreenTitle({ title = "", color = "#fff" }) {
   return (
     <View
       style={

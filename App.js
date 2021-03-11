@@ -56,16 +56,14 @@ export default function App() {
         <Tab.Screen name="Tarifler" component={Home} />
 
         {/* Favorites */}
-        <Tab.Screen name="Favoriler" component={Favorites} />
+        <Tab.Screen
+          name="Favoriler"
+          component={Favorites}
+          options={{ tabBarBadgeStyle: { marginLeft: 5 }, tabBarBadge: 3 }}
+        />
 
         {/* Details */}
-        <Tab.Screen
-          name="Detaylar"
-          component={Details}
-          options={{
-            tabBarBadge: 3,
-          }}
-        />
+        <Tab.Screen name="Detaylar" component={Details} />
       </Tab.Navigator>
     </NavigationContainer>
   );

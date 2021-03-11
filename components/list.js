@@ -24,6 +24,7 @@ export default function List({
   navigation,
   handleMenuPress,
   handleCategoryPress,
+  handleAllCategoriesPress,
 }) {
   console.log(navigation);
   return (
@@ -33,22 +34,19 @@ export default function List({
           flex: 0.1,
           flexDirection: "row",
           marginBottom: Spacing * 1.5,
-          // justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <Text style={styles.title}>Kategoriler</Text>
+        <Text style={styles.title}>Kategori</Text>
         <Text
           style={styles.viewAllText}
-          onPress={() => {
-            console.log("All categories clicked");
-          }}
+          onPress={() => handleAllCategoriesPress()}
         >
           Tümü &gt;
         </Text>
       </View>
 
-      {/* CATEGORY SLIDER */}
+      {/* CATEGORY HORIZONTAL SLIDER */}
       <Slider handleCategoryPress={handleCategoryPress} />
       {/* DISH MENUS VERTICAL LIST */}
       <CardList handleMenuPress={handleMenuPress} />

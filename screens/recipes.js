@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import SearchBox from "./../components/searchBox";
 import List from "../components/list";
+import AllCategories from "./allCategories";
 import CategoryMenus from "./categoryMenus";
 import MenuDetails from "./menuDetails";
 
@@ -25,19 +26,15 @@ export function Home() {
       }}
     >
       <Stack.Screen name="Tarifler" component={Recipes} />
+      <Stack.Screen name="Kategoriler" component={AllCategories} />
       <Stack.Screen
-        name="Kategoriler"
+        name="Kategori"
         component={CategoryMenus}
         options={({ route }) => ({
           title: route.params.category.title,
           headerStyle: {
             backgroundColor: route.params.category.color,
           },
-          /*  headerTintColor: "#fff",
-           headerTitleStyle: {
-            color: "#fff",
-            fontWeight: "bold",
-          }, */
         })}
       />
       <Stack.Screen
@@ -60,9 +57,10 @@ export default function Recipes({ navigation }) {
     <View style={styles.container}>
       <SearchBox text={searchQuery} onChangeText={setSearchQuery} />
       <List
+        handleAllCategoriesPress={() => navigation.push("Kategoriler")}
         handleCategoryPress={(category) => {
           console.log(category, "recipes !");
-          navigation.push("Kategoriler", { category });
+          navigation.push("Kategori", { category });
         }}
         handleMenuPress={(menu) => {
           console.log(menu, "menu !");

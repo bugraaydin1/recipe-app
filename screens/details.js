@@ -45,6 +45,8 @@ export default function Details() {
         pagingEnabled
         nestedScrollEnabled
         data={IconsData}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => item.id}
         initialScrollIndex={selectedItemIndex}
         renderItem={(item) => (

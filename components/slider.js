@@ -17,6 +17,8 @@ export default function Slider({ handleCategoryPress }) {
     <FlatList
       horizontal
       data={SliderData}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
       keyExtractor={(item, index) => index /* item.color */}
       snapToInterval={ItemWidth + Spacing * 2}
       contentContainerStyle={{

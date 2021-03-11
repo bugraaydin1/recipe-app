@@ -27,6 +27,8 @@ export default function CategorySlider({ handleMenuPress, sliderData }) {
     <FlatList
       horizontal
       data={sliderData}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
       keyExtractor={(item, index) => index}
       snapToInterval={ItemWidth * 1.5 + Spacing * 2}
       contentContainerStyle={{
@@ -36,8 +38,8 @@ export default function CategorySlider({ handleMenuPress, sliderData }) {
       renderItem={({ item, index }) => (
         <Pressable
           onPress={() => {
-            handleMenuPress({ title: item.title });
-            console.log("clicked:", item.title);
+            handleMenuPress({ title: item.title, id: item.id });
+            console.log(" CategorySlider Menu clicked:", item.title);
           }}
         >
           <View

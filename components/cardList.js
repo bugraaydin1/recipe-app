@@ -22,11 +22,11 @@ import { Rating } from "react-native-ratings";
 import FavoriteBadge from "./common/favoriteBadge";
 
 export default function CardList({ title, handleMenuPress }) {
+  const [favorite, setFavorite] = useState({});
+
   const ratingCompleted = (rating = 5) => {
     console.log("Rating is: " + rating);
   };
-
-  const [favorite, setFavorite] = useState({});
 
   return (
     <View style={styles.container}>
@@ -36,9 +36,11 @@ export default function CardList({ title, handleMenuPress }) {
 
       {/* DISH CARDS */}
       <FlatList
-        style={{ width: "100%" }}
         vertical
         data={MenuCardData}
+        style={{ width: "100%" }}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
         keyExtractor={(item, index) => index}
         snapToInterval={ItemWidth + Spacing * 2}
         contentContainerStyle={{
@@ -94,8 +96,7 @@ export default function CardList({ title, handleMenuPress }) {
             </View>
           </Pressable>
         )}
-        showHorizontalScrollIndicator={false}
-      ></FlatList>
+      />
     </View>
   );
 }

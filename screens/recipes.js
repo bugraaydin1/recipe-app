@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import SearchBox from "./../components/searchBox";
 import List from "../components/list";
 import AllCategories from "./allCategories";
 import CategoryMenus from "./categoryMenus";
 import MenuDetails from "./menuDetails";
-
-//import Details from "./../screens/details";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createSharedElementStackNavigator } from "react-navigation-shared-element";
+import { Spacing } from "../config/theme";
 
 const Stack = createStackNavigator();
+//const Stack = createSharedElementStackNavigator();
 
 export function Home() {
   return (
@@ -54,12 +55,17 @@ export default function Recipes({ navigation }) {
   console.log(searchQuery, navigation);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView
+      style={[
+        Platform.OS === "android" ? { marginTop: -30 } : { marginTop: -50 },
+        styles.container,
+      ]}
+    >
       <SearchBox text={searchQuery} onChangeText={setSearchQuery} />
       <List
         handleAllCategoriesPress={() => navigation.push("Kategoriler")}
         handleCategoryPress={(category) => {
-          console.log(category, "recipes !");
+          console.log(category, "category !");
           navigation.push("Kategori", { category });
         }}
         handleMenuPress={(menu) => {
@@ -67,16 +73,13 @@ export default function Recipes({ navigation }) {
           navigation.push("Menü", menu);
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: -30,
     flex: 1,
-    //flexDirection: "column",
-    //flexWrap: "wrap",
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",

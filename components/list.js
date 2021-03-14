@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Platform,
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
@@ -15,9 +16,7 @@ import {
   TextPrimaryColor,
   Spacing,
 } from "../config/theme";
-import { Icon } from "./icon";
 import { View, Text } from "react-native";
-import { IconsData, CategoriesSliderData } from "../config/data";
 import CardList from "./cardList";
 
 export default function List({
@@ -27,7 +26,13 @@ export default function List({
   handleAllCategoriesPress,
 }) {
   return (
-    <SafeAreaView style={{ top: Spacing * 5, flex: 1, width: "100%" }}>
+    <SafeAreaView
+      style={
+        !Platform.isPad
+          ? { top: Spacing * 5, flex: 1, width: "100%" }
+          : { top: Spacing * 2, flex: 1, width: "100%" }
+      }
+    >
       <View
         style={{
           flex: 0.1,

@@ -6,6 +6,7 @@ import {
   Text,
   View,
   TextInput,
+  Platform,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import {
@@ -24,10 +25,15 @@ export default function SearchBox({ text, onChangeText }) {
     <SafeAreaView style={styles.container}>
       <ScreenTitle />
       <LinearGradient
-        start={[1, 0.1]}
+        start={[1, 0.2]}
         end={[1, 1]}
         colors={["tomato", "transparent"]}
-        style={styles.linearGradient}
+        style={[
+          !Platform.isPad
+            ? { height: 180, marginBottom: -70 }
+            : { height: 210, marginBottom: -30 },
+          styles.linearGradient,
+        ]}
       >
         <View elevation={11} style={styles.searchBoxContainer}>
           <View style={styles.subContainer}>
@@ -69,9 +75,7 @@ const styles = StyleSheet.create({
     zIndex: -1,
     alignItems: "center",
     justifyContent: "center",
-    height: 180,
     width: "100%",
-    marginBottom: -80,
   },
 
   searchBoxContainer: {

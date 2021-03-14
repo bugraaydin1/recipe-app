@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Platform,
   StyleSheet,
   Pressable,
   FlatList,
@@ -18,9 +19,10 @@ import {
   FontSizeSubTitle,
   ItemWidth,
   IconSize,
+  LightestGray,
 } from "../config/theme";
-import { Rating } from "react-native-ratings";
 import FavoriteBadge from "./common/favoriteBadge";
+import { Rating } from "react-native-ratings";
 import { SharedElement } from "react-navigation-shared-element";
 
 export default function CardList({ title, handleMenuPress }) {
@@ -61,14 +63,21 @@ export default function CardList({ title, handleMenuPress }) {
           >
             <View
               elevation={5}
-              style={[styles.itemContainer, { backgroundColor: item.color }]}
+              style={[
+                Platform.OS === "ios" && {
+                  borderWidth: 0.2,
+                  borderColor: LightestGray,
+                },
+                { backgroundColor: item.color },
+                styles.itemContainer,
+              ]}
             >
               {/* <SharedElement id={`${item.id}`}> */}
               <Image
                 source={{ uri: item.uri }}
                 style={[
                   {
-                    width: ItemWidth * 2,
+                    width: !Platform.isPad ? ItemWidth * 2 : width,
                     height: ItemWidth * 0.7,
                   },
                   styles.image,
@@ -89,15 +98,16 @@ export default function CardList({ title, handleMenuPress }) {
                 <View
                   style={{
                     flex: 1,
-                    paddingVertical: Spacing * 3.5,
-                    marginRight: -38,
+                    position: "absolute",
+                    right: 0,
+                    marginTop: !Platform.isPad ? Spacing * 3.5 : Spacing * 3,
                   }}
                 >
                   <Rating
                     type="star"
                     fractions={1}
                     ratingCount={5}
-                    imageSize={21}
+                    imageSize={!Platform.isPad ? 21 : 25}
                     minValue={1}
                     startingValue={3}
                     defaultRating={item.rating}
@@ -142,6 +152,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     borderColor: "gray",
     overflow: "hidden",
+    elevation: 5,
   },
   itemTitle: {
     color: "#fff",

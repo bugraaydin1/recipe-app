@@ -41,7 +41,7 @@ export default function App() {
           iconStyle: {},
           labelStyle: {
             fontSize: 12,
-            // paddingBottom: 11,
+            paddingHorizontal: 7,
           },
           tabStyle: {
             backgroundColor: "rgba(0,0,0,0.02)",

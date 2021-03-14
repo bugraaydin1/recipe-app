@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialIcons } from "@expo/vector-icons/";
-import Recipes, { Home } from "./screens/recipes";
+import { Home } from "./screens/recipes";
 import Details from "./screens/details";
 import Favorites from "./screens/favorites";
 import CategoryMenus from "./screens/categoryMenus";

@@ -17,7 +17,7 @@ import {
 } from "../config/theme";
 import { Icon } from "./icon";
 import { View, Text } from "react-native";
-import { IconsData, SliderData } from "../config/listData";
+import { IconsData, CategoriesSliderData } from "../config/data";
 import CardList from "./cardList";
 
 export default function List({
@@ -26,7 +26,6 @@ export default function List({
   handleCategoryPress,
   handleAllCategoriesPress,
 }) {
-  console.log(navigation);
   return (
     <SafeAreaView style={{ top: Spacing * 5, flex: 1, width: "100%" }}>
       <View

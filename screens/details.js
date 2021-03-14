@@ -9,7 +9,7 @@ import {
   View,
   Text,
 } from "react-native";
-import { IconsData, SliderData } from "../config/listData";
+import { IconsData, CategoriesSliderData } from "../config/data";
 import { BorderRadius, FontSizeBody, Spacing, width } from "../config/theme";
 import { BackIcon } from "./../components/backIcon";
 import { Icon } from "./../components/icon";
@@ -47,7 +47,7 @@ export default function Details() {
         data={IconsData}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         initialScrollIndex={selectedItemIndex}
         renderItem={(item) => (
           <ScrollView

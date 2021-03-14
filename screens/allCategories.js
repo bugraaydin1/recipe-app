@@ -1,14 +1,14 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import ScreenTitle from "../components/head/screenTitle";
-import CategoriesList from "../components/categories/categoriesList";
+import CategoryList from "../components/categories/categoryList";
 
 export default function AllCategories({ navigation }) {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ScreenTitle title="Kategoriler" color="crimson" />
-      <CategoriesList title="Kategoriler" navigation={navigation} />
-    </View>
+      <CategoryList title="Kategoriler" navigation={navigation} />
+    </SafeAreaView>
   );
 }
 

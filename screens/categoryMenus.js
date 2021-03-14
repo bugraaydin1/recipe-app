@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import ScreenTitle from "../components/head/screenTitle";
-import CategoryList from "../components/category/categoryList";
+import MenuList from "../components/category/menuList";
 
 export default function CategoryMenus({
   navigation,
@@ -15,10 +15,10 @@ export default function CategoryMenus({
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ScreenTitle title={title} color={color} />
-      <CategoryList handleMenuPress={handleMenuPress} title={title} />
-    </View>
+      <MenuList handleMenuPress={handleMenuPress} title={title} />
+    </SafeAreaView>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { StyleSheet, View, Image, Text, Dimensions } from "react-native";
 import ScreenTitle from "../components/head/screenTitle";
 import {
   BorderRadius,
@@ -11,22 +11,25 @@ import {
   TextPrimaryColor,
 } from "../config/theme";
 import { Rating } from "react-native-ratings";
-import { MenuCardData } from "./../config/listData";
+import { MenusData } from "../config/data";
 import { BackIcon } from "./../components/backIcon";
 import FavoriteBadge from "../components/common/favoriteBadge";
+import { SharedElement } from "react-navigation-shared-element";
 
 //implemnent full page recipe menu details
 export default function MenuDetails({ route, navigation }) {
   const [favorite, setFavorite] = useState(false);
   const { id, title } = route.params;
 
+  const { height, width } = Dimensions.get("window");
+
   const getUri = (id) => {
-    const card = MenuCardData.filter((data) => data.id === id);
+    const card = MenusData.filter((data) => data.id === id);
     return card[0].uri;
   };
 
   const getRating = (id) => {
-    const card = MenuCardData.filter((data) => data.id === id);
+    const card = MenusData.filter((data) => data.id === id);
     return card[0].rating;
   };
 
@@ -36,9 +39,70 @@ export default function MenuDetails({ route, navigation }) {
 
   console.log(route);
 
+  MenuDetails.sharedElements = (route, otherRoute, showing) => {
+    const { id } = route.params;
+    console.log("### item Menu Details object:", route);
+    return [
+      {
+        id: `${id}`,
+        animation: "move", //fade
+        // resize: "clip", //auto | stretch | clip | none
+        // align: "center-bottom", //center-bottom
+      },
+    ];
+  };
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "#fff",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    image: {
+      resizeMode: "cover",
+      /* flex: 0.6, */
+      //top: 0,
+      //width: "100%",
+      //height: 900,
+      //height: "45%",
+    },
+    bottomGrid: {
+      /* flex: 0.4, */
+      position: "absolute",
+      width,
+      height: height * 0.4,
+      left: 0,
+      bottom: 0,
+      zIndex: 3,
+      overflow: "hidden",
+      borderTopRightRadius: 30,
+      borderTopLeftRadius: 30,
+      backgroundColor: "#fff",
+    },
+  });
+
   return (
     <View style={styles.container}>
-      <Image source={{ uri: getUri(id) }} style={styles.image} />
+      {/* <SharedElement
+        id={`${id}`}
+        style={[
+          StyleSheet.absoluteFill, // absoluteFill
+        ]}
+      > */}
+      <Image
+        source={{ uri: getUri(id) }}
+        style={[
+          {
+            bottom: width / 3,
+            width,
+            height, //(height * 3) / 5,
+            resizeMode: "cover",
+          },
+          styles.image,
+        ]}
+      />
+      {/* </SharedElement> */}
       <BackIcon onPress={() => navigation.goBack()} />
 
       <View elevation={21} style={styles.bottomGrid}>
@@ -84,30 +148,3 @@ export default function MenuDetails({ route, navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  image: {
-    flex: 0.6,
-    //top: 0,
-    marginBottom: -15,
-    width: "100%",
-    //height: "45%",
-    resizeMode: "cover",
-  },
-  bottomGrid: {
-    flex: 0.4,
-    width: "100%",
-    marginTop: -10,
-    zIndex: 3,
-    overflow: "hidden",
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
-    backgroundColor: "#fff",
-  },
-});

@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  SafeAreaView,
   StyleSheet,
   TouchableOpacity,
   Text,
@@ -20,7 +21,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 export default function SearchBox({ text, onChangeText }) {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ScreenTitle />
       <LinearGradient
         start={[1, 0.1]}
@@ -53,7 +54,7 @@ export default function SearchBox({ text, onChangeText }) {
           </View>
         </View>
       </LinearGradient>
-    </View>
+    </SafeAreaView>
   );
 }
 

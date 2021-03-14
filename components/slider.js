@@ -3,7 +3,7 @@ import { FlatList, TouchableWithoutFeedback } from "react-native";
 import { Pressable } from "react-native";
 import { Image } from "react-native";
 import { StyleSheet, View, Text } from "react-native";
-import { SliderData } from "../config/listData";
+import { CategoriesSliderData } from "../config/data";
 import {
   ItemWidth,
   width,
@@ -16,17 +16,18 @@ export default function Slider({ handleCategoryPress }) {
   return (
     <FlatList
       horizontal
-      data={SliderData}
+      data={CategoriesSliderData}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
-      keyExtractor={(item, index) => index /* item.color */}
+      keyExtractor={(item, index) => index.toString() /* item.color */}
       snapToInterval={ItemWidth + Spacing * 2}
       contentContainerStyle={{
         paddingHorizontal: Spacing /* marginRight: width - ItemWidth - Spacing * 2 */,
       }}
       decelerationRate={"fast"}
-      renderItem={({ item }) => (
+      renderItem={({ item, index }) => (
         <Pressable
+          key={`${item.id}-${index}`}
           onPress={() => {
             handleCategoryPress({ title: item.title, color: item.color });
             console.log("clicked:", item.title);

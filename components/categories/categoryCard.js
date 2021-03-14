@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { MenuCardData } from "../../config/listData";
+import { CategoriesData } from "../../config/data";
 import {
   BorderRadius,
   FontSizeBody,
@@ -19,7 +19,7 @@ import {
   IconSize,
 } from "../../config/theme";
 
-export default function CardListSmall({ title, navigation }) {
+export default function CategoryCard({ title, navigation }) {
   console.log("AllcategoriesNarrow:", navigation);
   return (
     <View style={styles.container}>
@@ -27,10 +27,10 @@ export default function CardListSmall({ title, navigation }) {
       <FlatList
         vertical
         style={{ width: "100%" }}
-        data={[...MenuCardData, ...MenuCardData]}
+        data={[...CategoriesData, ...CategoriesData]}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => index.toString()}
         snapToInterval={ItemWidth * 0.4 + Spacing * 2}
         contentContainerStyle={{
           padding: Spacing,

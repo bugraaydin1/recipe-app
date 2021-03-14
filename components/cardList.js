@@ -6,8 +6,9 @@ import {
   Image,
   Text,
   View,
+  Dimensions,
 } from "react-native";
-import { MenuCardData } from "../config/listData";
+import { MenusData } from "../config/data";
 import {
   BorderRadius,
   FontSizeBody,
@@ -20,9 +21,12 @@ import {
 } from "../config/theme";
 import { Rating } from "react-native-ratings";
 import FavoriteBadge from "./common/favoriteBadge";
+import { SharedElement } from "react-navigation-shared-element";
 
 export default function CardList({ title, handleMenuPress }) {
   const [favorite, setFavorite] = useState({});
+
+  const { height, width } = Dimensions.get("window");
 
   const ratingCompleted = (rating = 5) => {
     console.log("Rating is: " + rating);
@@ -37,11 +41,11 @@ export default function CardList({ title, handleMenuPress }) {
       {/* DISH CARDS */}
       <FlatList
         vertical
-        data={MenuCardData}
+        data={MenusData}
         style={{ width: "100%" }}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => index.toString()}
         snapToInterval={ItemWidth + Spacing * 2}
         contentContainerStyle={{
           padding: Spacing,
@@ -49,6 +53,7 @@ export default function CardList({ title, handleMenuPress }) {
         decelerationRate={"normal"}
         renderItem={({ item, index }) => (
           <Pressable
+            key={`${item.id}-${index + 10}`}
             onPress={() => {
               handleMenuPress({ id: item.id, title: item.title });
               console.log("clicked Menu Card:", item.title);
@@ -58,11 +63,18 @@ export default function CardList({ title, handleMenuPress }) {
               elevation={5}
               style={[styles.itemContainer, { backgroundColor: item.color }]}
             >
+              {/* <SharedElement id={`${item.id}`}> */}
               <Image
                 source={{ uri: item.uri }}
-                size={ItemWidth}
-                style={styles.image}
+                style={[
+                  {
+                    width: ItemWidth * 2,
+                    height: ItemWidth * 0.7,
+                  },
+                  styles.image,
+                ]}
               />
+              {/* </SharedElement> */}
               <FavoriteBadge
                 size="medium"
                 index={index}
@@ -103,7 +115,7 @@ export default function CardList({ title, handleMenuPress }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 17,
+    flex: 15,
     alignItems: "center",
     justifyContent: "center",
     textAlign: "left",
@@ -147,8 +159,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing,
   },
   image: {
-    width: "100%",
-    height: ItemWidth * 0.7,
     resizeMode: "cover",
   },
 });

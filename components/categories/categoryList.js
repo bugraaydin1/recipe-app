@@ -5,14 +5,14 @@ import {
   TextPrimaryColor,
   FontSizeSubTitle,
 } from "../../config/theme";
-import CardListSmall from "./cardListSmall";
-import { SliderData } from "../../config/listData";
+import CategoryCard from "./categoryCard";
+import { CategoriesSliderData } from "../../config/data";
 
-export default function CategoriesList({ title, navigation }) {
+export default function CategoryList({ title, navigation }) {
   console.log(navigation);
   return (
     <SafeAreaView style={{ top: Spacing * 5, flex: 1, width: "100%" }}>
-      <CardListSmall title={title} navigation={navigation} />
+      <CategoryCard title={title} navigation={navigation} />
     </SafeAreaView>
   );
 }

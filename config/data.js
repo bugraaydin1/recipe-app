@@ -1,4 +1,4 @@
-export const SliderData = [
+export const CategoriesSliderData = [
   {
     id: 0,
     title: "Çorbalar",
@@ -44,7 +44,7 @@ export const SliderData = [
   },
 ];
 
-export const MenuCardData = [
+export const CategoriesData = [
   {
     id: 10,
     title: "Çorbalar",
@@ -99,6 +99,63 @@ export const MenuCardData = [
     color: "pink",
     uri:
       "https://simply-delicious-food.com/wp-content/uploads/2019/04/flourless-chocolate-cake-1-of-2.jpg",
+  },
+];
+
+export const MenusData = [
+  {
+    id: 20,
+    categoryId: 10,
+    title: "Çorbalar 1",
+    rating: 3.8,
+    color: "crimson",
+    uri:
+      "https://simply-delicious-food.com/wp-content/uploads/2018/01/easy-vegetable-soup-4.jpg",
+  },
+  {
+    id: 21,
+    categoryId: 10,
+    title: "Çorbalar 2",
+    rating: 4.3,
+    color: "tomato",
+    uri:
+      "https://simply-delicious-food.com/wp-content/uploads/2018/01/chicken-noodle-soup-5.jpg",
+  },
+  {
+    id: 22,
+    categoryId: 10,
+    title: "Çorbalar 3",
+    rating: 4.7,
+    color: "dodgerblue",
+    uri:
+      "https://simply-delicious-food.com/wp-content/uploads/2019/11/Curried-cauliflower-soup-2.jpg",
+  },
+  {
+    id: 23,
+    categoryId: 10,
+    title: "Çorbalar 4",
+    rating: 4.5,
+    color: "lightgreen",
+    uri:
+      "https://simply-delicious-food.com/wp-content/uploads/2020/12/Chipotle-cauliflower-burrito-bowls-2.jpg",
+  },
+  {
+    id: 24,
+    categoryId: 10,
+    title: "Çorbalar 5",
+    rating: 3.5,
+    color: "darksalmon",
+    uri:
+      "https://simply-delicious-food.com/wp-content/uploads/2019/10/Creamy-mushroom-soup-2.jpg",
+  },
+  {
+    id: 25,
+    categoryId: 10,
+    title: "Çorbalar 6",
+    rating: 4.5,
+    color: "pink",
+    uri:
+      "https://simply-delicious-food.com/wp-content/uploads/2018/09/chicken-curry-soup-2.jpg",
   },
 ];
 

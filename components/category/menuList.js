@@ -17,11 +17,11 @@ import {
   Spacing,
   FontSizeSubTitle,
 } from "../../config/theme";
-import { MenuCardData } from "../../config/listData";
+import { MenusData } from "../../config/data";
 import CardList from "../cardList";
-import CategorySlider from "./categorySlider";
+import MenuSlider from "./menuSlider";
 
-export default function CategoryList({ title, navigation, handleMenuPress }) {
+export default function MenuList({ title, navigation, handleMenuPress }) {
   console.log(navigation);
   return (
     <SafeAreaView style={{ top: Spacing * 5, flex: 1, width: "100%" }}>
@@ -38,8 +38,8 @@ export default function CategoryList({ title, navigation, handleMenuPress }) {
       </View>
 
       {/* CATEGORY HORIZONTAL SLIDER */}
-      <CategorySlider
-        sliderData={MenuCardData}
+      <MenuSlider
+        CategoriesSliderData={MenusData}
         handleMenuPress={handleMenuPress}
       />
       {/* CATEGORY MENUS VERTICAL LIST */}

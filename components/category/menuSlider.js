@@ -17,19 +17,19 @@ import {
 } from "../../config/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons/";
-import FavoriteBadge from "./../common/favoriteBadge";
+import FavoriteBadge from "../common/favoriteBadge";
 
-export default function CategorySlider({ handleMenuPress, sliderData }) {
+export default function MenuSlider({ handleMenuPress, CategoriesSliderData }) {
   const [favorite, setFavorite] = useState(false);
 
   console.log(favorite);
   return (
     <FlatList
       horizontal
-      data={sliderData}
+      data={CategoriesSliderData}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
-      keyExtractor={(item, index) => index}
+      keyExtractor={(item, index) => index.toString()}
       snapToInterval={ItemWidth * 1.5 + Spacing * 2}
       contentContainerStyle={{
         paddingHorizontal: Spacing,
@@ -39,7 +39,7 @@ export default function CategorySlider({ handleMenuPress, sliderData }) {
         <Pressable
           onPress={() => {
             handleMenuPress({ title: item.title, id: item.id });
-            console.log(" CategorySlider Menu clicked:", item.title);
+            console.log(" MenuSlider Menu clicked:", item.title);
           }}
         >
           <View

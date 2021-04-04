@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialIcons } from "@expo/vector-icons/";
@@ -6,10 +6,18 @@ import { Home } from "./screens/recipes";
 import Details from "./screens/details";
 import Favorites from "./screens/favorites";
 import CategoryMenus from "./screens/categoryMenus";
+import firebaseConfig from "./firebase/config.json";
+import * as firebase from "firebase";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  useEffect(() => {
+    if (firebase.apps?.length === 0) {
+      firebase.initializeApp(firebaseConfig);
+    }
+  }, []);
+
   return (
     <NavigationContainer>
       <Tab.Navigator

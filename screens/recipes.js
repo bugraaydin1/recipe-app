@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { Platform, SafeAreaView, StyleSheet, View } from "react-native";
 import SearchBox from "./../components/searchBox";
 import List from "../components/list";
 import AllCategories from "./allCategories";

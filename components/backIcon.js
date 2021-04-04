@@ -1,4 +1,5 @@
 import React from "react";
+import { Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { BorderRadius, IconSize, TinyIconSize } from "../config/theme";
 

@@ -9,14 +9,15 @@ npm-debug.*
 *.orig.*
 web-build/
 
-#hidden
+#custom hidden
 firebase/
 android/apk/
 android/app/
+*.json
 
 # macOS
 .DS_Store
 run/.expo/settings.json
 run/.expo/README.md
-App.js
 .expo-shared/README.md
+App.js

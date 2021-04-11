@@ -12,17 +12,22 @@ export default function Profile() {
     <SafeAreaView style={styles.mainGrid}>
       <View style={styles.container1}>
         <Text style={styles.title}>Profilim</Text>
+        <Text style={styles.userName}>
+          {userData.name || userData?.email?.split("@")?.[0]}
+        </Text>
         {userData?.picture && (
           <Image
             style={styles.userPicture}
             source={{
-              uri: `${userData.picture.data.url}`,
+              uri: `${userData.picture.data.url || photoURL}`,
             }}
           />
         )}
       </View>
 
-      <View style={styles.container2}>{/* userData  &&*/ <SocialLogin />}</View>
+      <View style={styles.container2}>
+        <SocialLogin />
+      </View>
     </SafeAreaView>
   );
 }
@@ -44,7 +49,7 @@ const styles = StyleSheet.create({
   },
   container2: { flex: 0.8 },
 
-  title: { flex: 0.8, fontSize: FontSizeTitle },
+  title: { flex: 0.9, fontSize: FontSizeTitle },
   userPicture: {
     flex: 0.2,
     top: -Spacing,

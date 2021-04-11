@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { atom, useRecoilState } from "recoil";
-import { StyleSheet, View, Text, Pressable } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { BorderRadius, Spacing, TextPrimaryColor } from "../../config/theme";
 import { facebookAppId, googleWebClientId } from "./../../firebase/loginConfig";
@@ -21,16 +27,21 @@ export default function SocialLogin() {
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
   const [isSignup, setIsSignup] = useState(false);
+  const [isPasswordReset, setIsPasswordReset] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     googleInitAsync();
   }, []);
 
+  useEffect(() => {
+    isPasswordReset && setEmail("");
+  }, [isPasswordReset]);
+
   firebase.auth().onAuthStateChanged((user) => {
     if (user != null) {
-      //   setUserData(user);
-      console.info("We are authenticated now!");
+      setUserData(user);
+      console.info("## Authenticated firebase user:", user);
     }
     console.info(("#firebase user:", user));
   });
@@ -43,9 +54,7 @@ export default function SocialLogin() {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        setUserData(user);
-      })
+      .then(() => console.log("#email sign in "))
       .catch((err) => {
         if (err.code === "auth/email-already-in-use") {
           setError("Bu email kullanıyor");
@@ -61,14 +70,15 @@ export default function SocialLogin() {
   };
 
   const signOutWithEmail = () => {
-    console.log(firebase.auth().currentUser);
+    console.log("##current user", firebase.auth().currentUser);
     firebase.auth().currentUser &&
       firebase
         .auth()
         .signOut()
-        .then(() => console.log("signout"))
-        .catch((err) => console.log(err));
-
+        .then(() => {
+          console.log("signout");
+          setUserData();
+        });
     setUserData();
   };
 
@@ -87,6 +97,21 @@ export default function SocialLogin() {
     } else if (password !== passwordRepeat) {
       setError("Şifreler eşleşmiyor");
     }
+  };
+
+  const resetPassword = () => {
+    firebase.auth().useDeviceLanguage();
+    email
+      ? firebase
+          .auth()
+          .sendPasswordResetEmail(email)
+          .then(function () {
+            alert("Şifreyi değiştirmeniz için mail gönderildi");
+          })
+          .catch(function (err) {
+            console.log(err);
+          })
+      : setError("Email giriniz");
   };
   //#endregion
 
@@ -155,7 +180,7 @@ export default function SocialLogin() {
       alert("login Error:" + message);
     }
 
-    /*  // Sign in with credential from the Facebook user.
+    /*  // Sign in with credential from the Google user.
     firebase
       .auth()
       .signInWithCredential(credential)
@@ -187,67 +212,88 @@ export default function SocialLogin() {
             }}
             containerStyle={styles.inputContainer}
           />
-          <Input
-            secureTextEntry
-            placeholder="Şifre"
-            autoCompleteType="password"
-            maxLength={30}
-            value={password}
-            leftIcon={<Ionicons size={21} name="lock-closed" color="crimson" />}
-            placeholderTextColor={TextPrimaryColor}
-            onChangeText={(text) => setPassword(text)}
-            inputStyle={{ fontSize: 14 }}
-            inputContainerStyle={{
-              borderColor: "transparent",
-              height: 40,
-            }}
-            errorStyle={{ top: -5 }}
-            errorMessage={!isSignup && email && password ? error : ""}
-            containerStyle={styles.inputContainer}
-          />
-          {isSignup && (
-            <Input
-              secureTextEntry
-              placeholder="Şifreyi tekrar yazın"
-              autoCompleteType="password"
-              maxLength={30}
-              value={passwordRepeat}
-              leftIcon={
-                <Ionicons size={21} name="lock-closed" color="crimson" />
-              }
-              placeholderTextColor={TextPrimaryColor}
-              onChangeText={(text) => setPasswordRepeat(text)}
-              inputStyle={{ fontSize: 14 }}
-              inputContainerStyle={{
-                borderColor: "transparent",
-                height: 40,
-              }}
-              errorStyle={{ top: -5 }}
-              errorMessage={email && password ? error : ""}
-              containerStyle={styles.inputContainer}
-            />
+          {!isPasswordReset && (
+            <>
+              <Input
+                secureTextEntry
+                placeholder="Şifre"
+                autoCompleteType="password"
+                maxLength={30}
+                value={password}
+                leftIcon={
+                  <Ionicons size={21} name="lock-closed" color="crimson" />
+                }
+                placeholderTextColor={TextPrimaryColor}
+                onChangeText={(text) => setPassword(text)}
+                inputStyle={{ fontSize: 14 }}
+                inputContainerStyle={{
+                  borderColor: "transparent",
+                  height: 40,
+                }}
+                errorStyle={{ top: -5 }}
+                errorMessage={!isSignup && email && password ? error : ""}
+                containerStyle={styles.inputContainer}
+              />
+              {isSignup && (
+                <Input
+                  secureTextEntry
+                  placeholder="Şifreyi tekrar yazın"
+                  autoCompleteType="password"
+                  maxLength={30}
+                  value={passwordRepeat}
+                  leftIcon={
+                    <Ionicons size={21} name="lock-closed" color="crimson" />
+                  }
+                  placeholderTextColor={TextPrimaryColor}
+                  onChangeText={(text) => setPasswordRepeat(text)}
+                  inputStyle={{ fontSize: 14 }}
+                  inputContainerStyle={{
+                    borderColor: "transparent",
+                    height: 40,
+                  }}
+                  errorStyle={{ top: -5 }}
+                  errorMessage={email && password ? error : ""}
+                  containerStyle={styles.inputContainer}
+                />
+              )}
+            </>
           )}
         </>
       )}
-      <Pressable
+      <TouchableOpacity
         color="crimson"
         style={styles.button}
-        onPress={() =>
-          !userData
-            ? !isSignup
-              ? loginWithEmail()
-              : signupWithEmail()
-            : signOutWithEmail()
+        onPress={
+          () =>
+            !userData
+              ? !isSignup
+                ? !isPasswordReset
+                  ? loginWithEmail()
+                  : resetPassword()
+                : signupWithEmail()
+              : signOutWithEmail()
+
+          /*    if (!userData) {
+            if (!isSignup) {
+              !isPasswordReset ? loginWithEmail() : resetPassword();
+            } else {
+              signupWithEmail();
+            }
+          } else {
+            signOutWithEmail();
+          } */
         }
       >
         <Text style={{ color: "#fff" }}>
           {!userData
             ? !isSignup
-              ? "Giriş Yap"
+              ? !isPasswordReset
+                ? "Giriş Yap"
+                : "Şifreyi sıfırla"
               : "Kayıt ol"
             : `${userData?.email?.split("@")?.[0]} Çıkış`}
         </Text>
-      </Pressable>
+      </TouchableOpacity>
 
       {!userData && (
         <View
@@ -258,14 +304,23 @@ export default function SocialLogin() {
           }}
         >
           <Pressable
-            onPress={() => setIsSignup(!isSignup)}
+            onPress={() => {
+              setIsSignup(!isSignup);
+              setIsPasswordReset(false);
+            }}
             style={styles.pressable}
           >
             <Text style={styles.text}>
               {!isSignup ? "Kayıt ol" : "Giriş Yap"}
             </Text>
           </Pressable>
-          <Pressable style={styles.pressable}>
+          <Pressable
+            onPress={() => {
+              setIsPasswordReset(true);
+              setIsSignup(false);
+            }}
+            style={styles.pressable}
+          >
             <Text style={styles.text}>Şifremi Unuttum</Text>
           </Pressable>
         </View>

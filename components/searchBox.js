@@ -38,6 +38,7 @@ export default function SearchBox({ text, onChangeText }) {
         <View elevation={11} style={styles.searchBoxContainer}>
           <View style={styles.subContainer}>
             <TextInput
+              autoCompleteType="off"
               autoCapitalize="words"
               autoCorrect={false}
               maxLength={30}
